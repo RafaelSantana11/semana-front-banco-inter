@@ -67,7 +67,9 @@ export default class PixService {
     pixTransaction.status = 'close';
     pixTransaction.payingUser = payingUser;
 
-    await pixRepository.save(pixTransaction);
+    const saved = await pixRepository.save(pixTransaction);
+
+    console.log(saved);
 
     return { msg: 'Pagamento efetuado com sucesso' };
   }
@@ -81,7 +83,7 @@ export default class PixService {
     });
 
     const pixPaying = await pixRepository.find({
-      where: { requestingUser: user.id, status: 'close' },
+      where: { payingUser: user.id, status: 'close' },
       relations: ['requestingUser'],
     });
 
@@ -95,6 +97,8 @@ export default class PixService {
       type: 'received',
     }));
 
+    console.log(received);
+
     const paying = pixPaying.map(t => ({
       value: t.value,
       user: {
@@ -104,6 +108,8 @@ export default class PixService {
       updatedAt: t.updatedAt,
       type: 'paid',
     }));
+
+    console.log(paying);
 
     const allTransactions = received.concat(paying);
 
