@@ -6,10 +6,10 @@ export class User {
   id: string;
 
   @Column()
-  firtsName: string;
+  firstName: string;
 
   @Column()
-  lastName: number;
+  lastName: string;
 
   @Column()
   accountNumber: number;
@@ -18,7 +18,7 @@ export class User {
   accountDigit: number;
 
   @Column()
-  wallet: string;
+  wallet: number;
 
   @Column()
   email: string;
