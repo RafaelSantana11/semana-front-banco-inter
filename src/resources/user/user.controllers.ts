@@ -18,4 +18,12 @@ export class UserController {
 
     return res.status(200).send(user);
   }
+
+  async me(req: Request, res: Response) {
+    const userService = new UserService();
+
+    const user = await userService.me(req.user);
+
+    return res.status(200).send(user);
+  }
 }
