@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import 'express-async-errors';
 import { getRepository } from 'typeorm';
 import md5 from 'crypto-js/md5';
